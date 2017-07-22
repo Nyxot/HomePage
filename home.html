@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+</head>
+<body style="background-color: darkslategrey">
+    <div id="reloj" style="color: white; font-size: 30px; font-family: Consolas; display: flex; margin: 20% 50%;">
+        <p id="hora"></p>
+        <p id="minuto"></p>
+        <p id="segundo"></p>
+
+        <script>
+            setInterval(function (){myTymer() },1000);
+
+            function myTymer() {
+                var d = new Date();
+                document.getElementById("hora").innerHTML = d.getHours() + ":";
+                document.getElementById("minuto").innerHTML = d.getMinutes() + ":";
+                document.getElementById("segundo").innerHTML = d.getSeconds();
+            }
+        </script>
+    </div>
+</body>
+</html>
