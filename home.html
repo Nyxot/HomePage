@@ -2,9 +2,62 @@
 <html>
 <head>
     <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <style>
+        body{
+            background-color: darkslategrey;
+            color: white;
+            display: -webkit-flex;
+            display: flex;
+            font-family: Consolas;
+        }
+        #reloj{
+            font-size: 30px;
+            display: flex;
+            margin: 20% 50%;
+        }
+        img{
+            height: 200px;
+            width: 150px;
+        }
+        a{
+            display: flex;
+            color: white;
+            text-decoration: none;
+        }
+        a > p{
+            font-size: 25px;
+            visibility: hidden;
+            margin: auto;
+            transition: visibility 0.5s, background-color 0.5s;
+        }
+        a:hover > p {
+            visibility: visible;
+            background-color: darkgray;
+        }
+    </style>
 </head>
-<body style="background-color: darkslategrey">
-    <div id="reloj" style="color: white; font-size: 30px; font-family: Consolas; display: flex; margin: 20% 50%;">
+<body>
+    <div>
+        <div>
+            <a href="https://www.facebook.com/" target="_blank">
+                <img src="asuka.png">
+                <p>Facebook</p>
+            </a>
+        </div>
+        <div>
+            <a href="http://animeflv.net/" target="_blank">
+                <img src="gun.png">
+                <p>AnimeFLV</p>
+            </a>
+        </div>
+        <div>
+            <a href="https://tumangaonline.com/home" target="_blank">
+                <img src="C.png">
+                <p>TuMangaOnline</p>
+            </a>
+        </div>
+    </div>
+    <div id="reloj">
         <p id="hora"></p>
         <p id="minuto"></p>
         <p id="segundo"></p>
