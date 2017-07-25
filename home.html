@@ -10,10 +10,13 @@
             display: flex;
             font-family: Consolas;
         }
+        #links{
+            width: 33%;
+        }
         #reloj{
             font-size: 30px;
             display: flex;
-            margin: 20% 50%;
+            width: 33%;
         }
         img{
             height: 200px;
@@ -34,34 +37,51 @@
             visibility: visible;
             background-color: darkgray;
         }
+        #buscador{
+            width: 33%;
+        }
     </style>
 </head>
 <body>
-    <div>
+    <div id="links">
         <div>
-            <a href="https://www.facebook.com/" target="_blank">
+            <a href="https://www.facebook.com/">
                 <img src="asuka.png">
                 <p>Facebook</p>
             </a>
         </div>
         <div>
-            <a href="http://animeflv.net/" target="_blank">
+            <a href="http://animeflv.net/">
                 <img src="gun.png">
                 <p>AnimeFLV</p>
             </a>
         </div>
         <div>
-            <a href="https://tumangaonline.com/home" target="_blank">
+            <a href="https://tumangaonline.com/home">
                 <img src="C.png">
                 <p>TuMangaOnline</p>
             </a>
         </div>
     </div>
+    <div id="buscador">
+        <!-- Búsqueda Google -->
+        <FORM method=GET action="http://www.google.com/search" style="margin: auto 24%;">
+            <TABLE><tr><td>
+                <img src="http://i.4cdn.org/c/1499715519982.gif">
+                <INPUT style="background-color: rgb(255, 255, 255, 0.4);" TYPE=text name=q size=31 maxlength=255 value=""
+                       placeholder="Buscar" autofocus>
+                <INPUT TYPE=hidden name=hl value=es>
+            </td></tr>
+            </TABLE>
+        </FORM>
+        <!-- Búsqueda Google -->
+    </div>
     <div id="reloj">
-        <p id="hora"></p>
-        <p id="minuto"></p>
-        <p id="segundo"></p>
-
+        <div style="display: flex; margin:20% auto;">
+            <p id="hora"></p>
+            <p id="minuto"></p>
+            <p id="segundo"></p>
+        </div>
         <script>
             setInterval(function (){myTymer() },1000);
 
