@@ -26,11 +26,16 @@
     button{
       margin-bottom: 10px;
     }
+
+    input{
+      color: white;
+    }
   </style>
 </head>
 <body class="container">
   <div id="app">
     <h1 class="center">{{ date }}</h1>
+    <input v-on:keyup.enter="searchGoogle" v-model="search" placeholder="Search..." v-focus/>
     <ul>
       <li v-for="p of pages">
         <a :href="p.url" target="_blank">
@@ -43,15 +48,18 @@
   </div>
 </body>
 <script>
+  
   let app = new Vue({
     el: '#app',
     data:{
       date: moment().format("LLLL"),
+      search: '',
       pages: [
         {name: 'Facebook',url: 'https://www.facebook.com/'},
         {name: 'Gmail', url: 'https://mail.google.com/mail/u/0/#inbox'},
         {name: 'Animeflv', url: 'https://animeflv.net/'},
-        {name: 'Tumangaonline', url: 'https://tumangaonline.me/?uploads_mode=thumbnail'}
+        {name: 'Tumangaonline', url: 'https://tumangaonline.me/?uploads_mode=thumbnail'},
+        {name: 'Urrea RH', url: 'http://desarrollohumano.urrea.com/dhNoticias.php'}
       ]
     },
     created: function () {
@@ -60,6 +68,21 @@
         // console.log('updating ticker')
         self.$data.date =  moment().format("LLLL")
       }, 1000)
+
+      // Register a global custom directive called `v-focus`
+      Vue.directive('focus', {
+        // When the bound element is inserted into the DOM...
+        inserted: function (el) {
+          // Focus the element
+          el.focus()
+        }
+      })
+    },
+    methods:{
+      searchGoogle: function(){
+        let goo = 'https://www.google.com/search?q=' + this.$data.search;
+        window.location = goo;
+      }
     }
   })
 </script>
