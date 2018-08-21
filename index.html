@@ -5,18 +5,61 @@
   <title>HomePage</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+  <style>
+    body{
+      background-image: url("background.png");
+      background-repeat: no-repeat;
+      background-size: 100% calc(100% - -75vh);
+    }
+
+    h1{
+      color: white;
+    }
+
+    a{
+      color: white;
+    }
+
+    button{
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body class="container">
   <div id="app">
-    {{ message }}
+    <h1 class="center">{{ date }}</h1>
+    <ul>
+      <li v-for="p of pages">
+        <a :href="p.url" target="_blank">
+          <button class="btn waves-effect waves-light">
+            {{ p.name }}
+          </button>
+        </a>
+      </li>
+    </ul>
   </div>
 </body>
 <script>
   let app = new Vue({
     el: '#app',
     data:{
-      message: 'Home Page'
+      date: moment().format("LLLL"),
+      pages: [
+        {name: 'Facebook',url: 'https://www.facebook.com/'},
+        {name: 'Gmail', url: 'https://mail.google.com/mail/u/0/#inbox'},
+        {name: 'Animeflv', url: 'https://animeflv.net/'},
+        {name: 'Tumangaonline', url: 'https://tumangaonline.me/?uploads_mode=thumbnail'}
+      ]
+    },
+    created: function () {
+      let self = this;
+      setInterval(function () {
+        // console.log('updating ticker')
+        self.$data.date =  moment().format("LLLL")
+      }, 1000)
     }
   })
 </script>
