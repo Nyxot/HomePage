@@ -36,15 +36,41 @@
   <div id="app">
     <h1 class="center">{{ date }}</h1>
     <input v-on:keyup.enter="searchGoogle" v-model="search" placeholder="Search..." v-focus/>
-    <ul>
-      <li v-for="p of pages">
-        <a :href="p.url" target="_blank">
-          <button class="btn waves-effect waves-light">
-            {{ p.name }}
-          </button>
-        </a>
-      </li>
-    </ul>
+    <div class="row">
+      <div class="col s4">
+        <ul>
+          <li v-for="p of pages1">
+            <a :href="p.url" target="_blank">
+              <button class="btn waves-effect waves-light">
+                {{ p.name }}
+              </button>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col s4">
+        <ul>
+          <li v-for="p of pages2">
+            <a :href="p.url" target="_blank">
+              <button class="btn waves-effect waves-light">
+                {{ p.name }}
+              </button>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col s4">
+        <ul>
+          <li v-for="p of pages3">
+            <a :href="p.url" target="_blank">
+              <button class="btn waves-effect waves-light">
+                {{ p.name }}
+              </button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </body>
 <script>
@@ -54,11 +80,16 @@
     data:{
       date: moment().format("LLLL"),
       search: '',
-      pages: [
+      pages1: [
         {name: 'Facebook',url: 'https://www.facebook.com/'},
         {name: 'Gmail', url: 'https://mail.google.com/mail/u/0/#inbox'},
         {name: 'Animeflv', url: 'https://animeflv.net/'},
-        {name: 'Tumangaonline', url: 'https://tumangaonline.me/?uploads_mode=thumbnail'},
+        {name: 'Tumangaonline', url: 'https://tumangaonline.me/?uploads_mode=thumbnail'}
+      ],
+      pages2: [
+        {name: 'Materialize',url: 'https://materializecss.com/'}
+      ],
+      pages3: [
         {name: 'Urrea RH', url: 'http://desarrollohumano.urrea.com/dhNoticias.php'}
       ]
     },
