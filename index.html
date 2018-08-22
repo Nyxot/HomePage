@@ -100,12 +100,12 @@
     watch:{
       search:{
         handler: function(newVal, oldVal){
-          this.$data.result = [];
-          // console.log(newVal);
-          // console.log(oldVal);
-          // this.$data.result.push(newVal);
-          // console.log(this.$data.result);
-          // this.$http.get('http://google.com/complete/search?client=firefox&q='+newVal).then(function(response){
+          // this.$data.result = [];
+          // // console.log(newVal);
+          // // console.log(oldVal);
+          // // this.$data.result.push(newVal);
+          // // console.log(this.$data.result);
+          // this.$http.get('http://suggestqueries.google.com/complete/search?client=firefox&q='+newVal).then(function(response){
           //     console.log(response.body);
           //     this.$data.result.push(response.body);
           // }, function(){
@@ -122,7 +122,7 @@
       props:['name', 'url'],
       template: `<ul>
                   <li>
-                    <a href="url" target="_blank">
+                    <a :href="url" target="_blank">
                       <button class="btn waves-effect waves-light">
                         {{ name }}
                       </button>
