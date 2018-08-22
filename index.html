@@ -42,42 +42,19 @@
     </ul>
     <div class="row">
       <div class="col s4">
-        <ul>
-          <li v-for="p of pages1">
-            <a :href="p.url" target="_blank">
-              <button class="btn waves-effect waves-light">
-                {{ p.name }}
-              </button>
-            </a>
-          </li>
-        </ul>
+        <list-pages v-for="p of pages1" :name="p.name" v-bind:url="p.url"></list-pages>
       </div>
       <div class="col s4">
-        <ul>
-          <li v-for="p of pages2">
-            <a :href="p.url" target="_blank">
-              <button class="btn waves-effect waves-light">
-                {{ p.name }}
-              </button>
-            </a>
-          </li>
-        </ul>
+        <list-pages v-for="p of pages2" :name="p.name" v-bind:url="p.url"></list-pages>
       </div>
       <div class="col s4">
-        <ul>
-          <li v-for="p of pages3">
-            <a :href="p.url" target="_blank">
-              <button class="btn waves-effect waves-light">
-                {{ p.name }}
-              </button>
-            </a>
-          </li>
-        </ul>
+        <list-pages v-for="p of pages3" :name="p.name" v-bind:url="p.url"></list-pages>
       </div>
     </div>
   </div>
 </body>
 <script>
+
   let app = new Vue({
     el: '#app',
     data:{
@@ -137,6 +114,21 @@
           // console.log(this.$data.result);
         },
         deep: true
+      }
+    },
+    components:{
+
+    'list-pages': {
+      props:['name', 'url'],
+      template: `<ul>
+                  <li>
+                    <a href="url" target="_blank">
+                      <button class="btn waves-effect waves-light">
+                        {{ name }}
+                      </button>
+                    </a>
+                  </li>
+                </ul>`
       }
     }
   })
