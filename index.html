@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
   <style>
     body{
@@ -36,6 +37,9 @@
   <div id="app">
     <h1 class="center">{{ date }}</h1>
     <input v-on:keyup.enter="searchGoogle" v-model="search" placeholder="Search..." v-focus/>
+    <ul>
+      <li v-for="r of result"></li>
+    </ul>
     <div class="row">
       <div class="col s4">
         <ul>
@@ -74,7 +78,6 @@
   </div>
 </body>
 <script>
-  
   let app = new Vue({
     el: '#app',
     data:{
@@ -87,11 +90,13 @@
         {name: 'Tumangaonline', url: 'https://tumangaonline.me/?uploads_mode=thumbnail'}
       ],
       pages2: [
-        {name: 'Materialize',url: 'https://materializecss.com/'}
+        {name: 'Materialize', url: 'https://materializecss.com/'},
+        {name: 'Nyxot Github', url: 'https://github.com/Nyxot?tab=repositories'}
       ],
       pages3: [
         {name: 'Urrea RH', url: 'http://desarrollohumano.urrea.com/dhNoticias.php'}
-      ]
+      ],
+      result:[]
     },
     created: function () {
       let self = this;
@@ -113,6 +118,25 @@
       searchGoogle: function(){
         let goo = 'https://www.google.com/search?q=' + this.$data.search;
         window.location = goo;
+      },
+    },
+    watch:{
+      search:{
+        handler: function(newVal, oldVal){
+          this.$data.result = [];
+          // console.log(newVal);
+          // console.log(oldVal);
+          // this.$data.result.push(newVal);
+          // console.log(this.$data.result);
+          // this.$http.get('http://google.com/complete/search?client=firefox&q='+newVal).then(function(response){
+          //     console.log(response.body);
+          //     this.$data.result.push(response.body);
+          // }, function(){
+          //     alert('Error!');
+          // });
+          // console.log(this.$data.result);
+        },
+        deep: true
       }
     }
   })
