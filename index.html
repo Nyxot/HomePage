@@ -104,11 +104,11 @@
     },
     methods: {
       searchGoogle: function () {
-        this.$http.post('data.php', {
-          search: this.search,
-        }).then(function (response) {
-          this.historial = response.body;
-        });
+        // this.$http.post('data.php', {
+        //   search: this.search,
+        // }).then(function (response) {
+        //   this.historial = response.body;
+        // });
 
         let goo = 'https://www.google.com/search?q=' + this.search;
         window.location = goo;
@@ -126,7 +126,7 @@
       search: {
         handler: function (newVal, oldVal) {
           //console.log(newVal);
-          this.loadHistorial();
+          //this.loadHistorial();
         },
         deep: true
       }
