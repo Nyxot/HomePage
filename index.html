@@ -44,18 +44,15 @@
   <div id="app">
     <h1 class="center">{{ date }}</h1>
     <input v-on:keyup.enter="searchGoogle" v-model="search" placeholder="Search..." v-focus/>
-    <ul>
-      <li v-for="r of result"></li>
-    </ul>
     <div class="row">
       <div class="col s4">
-        <list-pages v-for="p of pages1" :name="p.name" v-bind:url="p.url"></list-pages>
+        <list-pages v-for="p of pages1" v-bind:key="p.name" v-bind:name="p.name" v-bind:url="p.url"></list-pages>
       </div>
       <div class="col s4">
-        <list-pages v-for="p of pages2" :name="p.name" v-bind:url="p.url"></list-pages>
+        <list-pages v-for="p of pages2" v-bind:key="p.name" v-bind:name="p.name" v-bind:url="p.url"></list-pages>
       </div>
       <div class="col s4">
-        <list-pages v-for="p of pages3" :name="p.name" v-bind:url="p.url"></list-pages>
+        <list-pages v-for="p of pages3" v-bind:key="p.name" v-bind:name="p.name" v-bind:url="p.url"></list-pages>
       </div>
     </div>
   </div>
@@ -81,8 +78,7 @@
       ],
       pages3: [
         { name: 'Urrea RH', url: 'http://desarrollohumano.urrea.com/dhNoticias.php' }
-      ],
-      result: []
+      ]
     },
     created: function () {
       let self = this;
@@ -110,15 +106,15 @@
       search: {
         handler: function (newVal, oldVal) {
           // this.$data.result = [];
-          // // console.log(newVal);
-          // // console.log(oldVal);
-          // // this.$data.result.push(newVal);
-          // // console.log(this.$data.result);
-          // this.$http.get('http://suggestqueries.google.com/complete/search?client=firefox&q='+newVal).then(function(response){
-          //     console.log(response.body);
-          //     this.$data.result.push(response.body);
-          // }, function(){
-          //     alert('Error!');
+          // // // console.log(newVal);
+          // // // console.log(oldVal);
+          // // // this.$data.result.push(newVal);
+          // // // console.log(this.$data.result);
+          // this.$http.get('https://sugg.search.yahoo.net/sg/?output=jsonp&nresults=10&command=' + newVal).then(function (response) {
+          //   console.log(response.body);
+          //   this.$data.result.push(response.body);
+          // }, function () {
+          //   // alert('Error!');
           // });
           // console.log(this.$data.result);
         },
