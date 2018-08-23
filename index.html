@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <title>HomePage</title>
@@ -10,33 +11,35 @@
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
   <style>
-    body{
+    body {
       background-image: url("background.png");
       background-repeat: no-repeat;
       background-size: 100% calc(100% - -75vh);
     }
 
-    h1{
+    h1 {
       color: white;
     }
 
-    a{
+    a {
       color: white;
     }
 
-    button{
+    button {
       margin-bottom: 10px;
       max-width: 100%;
     }
-    .btn{
+
+    .btn {
       font-size: 2vh;
     }
 
-    input{
+    input {
       color: white;
     }
   </style>
 </head>
+
 <body class="container">
   <div id="app">
     <h1 class="center">{{ date }}</h1>
@@ -61,31 +64,31 @@
 
   let app = new Vue({
     el: '#app',
-    data:{
+    data: {
       date: moment().format("LLLL"),
       search: '',
       pages1: [
-        {name: 'Facebook',url: 'https://www.facebook.com/'},
-        {name: 'Gmail', url: 'https://mail.google.com/mail/u/0/#inbox'},
-        {name: 'Animeflv', url: 'https://animeflv.net/'},
-        {name: 'Tumangaonline', url: 'https://tumangaonline.me/?uploads_mode=thumbnail'}
+        { name: 'Facebook', url: 'https://www.facebook.com/' },
+        { name: 'Gmail', url: 'https://mail.google.com/mail/u/0/#inbox' },
+        { name: 'Animeflv', url: 'https://animeflv.net/' },
+        { name: 'Tumangaonline', url: 'https://tumangaonline.me/?uploads_mode=thumbnail' }
       ],
       pages2: [
-        {name: 'Materialize', url: 'https://materializecss.com/'},
-        {name: 'VueJs API', url: 'https://vuejs.org/v2/api/#Global-Config'},
-        {name : 'Awesome Vue', url: 'https://github.com/vuejs/awesome-vue'},
-        {name: 'Nyxot Github', url: 'https://github.com/Nyxot?tab=repositories'}
+        { name: 'Materialize', url: 'https://materializecss.com/' },
+        { name: 'VueJs API', url: 'https://vuejs.org/v2/api/#Global-Config' },
+        { name: 'Awesome Vue', url: 'https://github.com/vuejs/awesome-vue' },
+        { name: 'Nyxot Github', url: 'https://github.com/Nyxot?tab=repositories' }
       ],
       pages3: [
-        {name: 'Urrea RH', url: 'http://desarrollohumano.urrea.com/dhNoticias.php'}
+        { name: 'Urrea RH', url: 'http://desarrollohumano.urrea.com/dhNoticias.php' }
       ],
-      result:[]
+      result: []
     },
     created: function () {
       let self = this;
       setInterval(function () {
         // console.log('updating ticker')
-        self.$data.date =  moment().format("LLLL")
+        self.$data.date = moment().format("LLLL")
       }, 1000)
 
       // Register a global custom directive called `v-focus`
@@ -97,15 +100,15 @@
         }
       })
     },
-    methods:{
-      searchGoogle: function(){
+    methods: {
+      searchGoogle: function () {
         let goo = 'https://www.google.com/search?q=' + this.$data.search;
         window.location = goo;
       },
     },
-    watch:{
-      search:{
-        handler: function(newVal, oldVal){
+    watch: {
+      search: {
+        handler: function (newVal, oldVal) {
           // this.$data.result = [];
           // // console.log(newVal);
           // // console.log(oldVal);
@@ -122,11 +125,11 @@
         deep: true
       }
     },
-    components:{
+    components: {
 
-    'list-pages': {
-      props:['name', 'url'],
-      template: `<ul>
+      'list-pages': {
+        props: ['name', 'url'],
+        template: `<ul>
                   <li>
                     <a :href="url" target="_blank">
                       <button class="btn waves-effect waves-light">
@@ -139,4 +142,5 @@
     }
   })
 </script>
+
 </html>
