@@ -44,6 +44,11 @@
   <div id="app">
     <h1 class="center">{{ date }}</h1>
     <input v-on:keyup.enter="searchGoogle" v-model="search" placeholder="Search..." v-focus/>
+    <ul>
+      <li v-for="h of historial">
+        {{ h }}
+      </li>
+    </ul>
     <div class="row">
       <div class="col s4">
         <list-pages v-for="p of pages1" v-bind:key="p.name" v-bind:name="p.name" v-bind:url="p.url"></list-pages>
@@ -78,7 +83,8 @@
       ],
       pages3: [
         { name: 'Urrea RH', url: 'http://desarrollohumano.urrea.com/dhNoticias.php' }
-      ]
+      ],
+      historial: []
     },
     created: function () {
       let self = this;
@@ -98,25 +104,29 @@
     },
     methods: {
       searchGoogle: function () {
-        let goo = 'https://www.google.com/search?q=' + this.$data.search;
+        this.$http.post('data.php', {
+          search: this.search,
+        }).then(function (response) {
+          this.historial = response.body;
+        });
+
+        let goo = 'https://www.google.com/search?q=' + this.search;
         window.location = goo;
       },
+      loadHistorial: function () {
+        this.$http.get('data.php').then(function (response) {
+          console.log(response.body);
+          this.historial = response.body;
+        }, function () {
+          alert('Error!');
+        });
+      }
     },
     watch: {
       search: {
         handler: function (newVal, oldVal) {
-          // this.$data.result = [];
-          // // // console.log(newVal);
-          // // // console.log(oldVal);
-          // // // this.$data.result.push(newVal);
-          // // // console.log(this.$data.result);
-          // this.$http.get('https://sugg.search.yahoo.net/sg/?output=jsonp&nresults=10&command=' + newVal).then(function (response) {
-          //   console.log(response.body);
-          //   this.$data.result.push(response.body);
-          // }, function () {
-          //   // alert('Error!');
-          // });
-          // console.log(this.$data.result);
+          //console.log(newVal);
+          this.loadHistorial();
         },
         deep: true
       }
